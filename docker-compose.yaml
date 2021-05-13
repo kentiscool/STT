@@ -1,0 +1,39 @@
+version: '3.3'
+services:
+    # Messi
+    #===============================================================
+    messi:
+        build: ./messi
+        ports:
+            - "3000:3000"
+        command: npm run start:dev
+        volumes:
+            - "./messi/src:/src"
+        depends_on:
+            - "postgres"
+    messi_prod:
+        build: ./messi
+        ports:
+            - "3000:3000"
+        command: npm run start:prod
+        volumes:
+            - "./messi/src:/src"
+    #===============================================================
+
+    # Postgres
+    #===============================================================
+    postgres:
+        build: ./postgres
+        volumes:
+            - postgres_data:/var/lib/postgresql/data
+        environment:
+            - POSTGRES_USER=${APP_DB_USERNAME}
+            - POSTGRES_PASSWORD=${APP_DB_PASSWORD}
+            - POSTGRES_DB=${APP_DB_NAME}
+            - PORT=${APP_DB_PORT}
+        ports:
+            - "5000:${APP_DB_PORT}"
+    #===============================================================
+
+volumes:
+    postgres_data:
