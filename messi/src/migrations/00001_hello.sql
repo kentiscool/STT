@@ -1,4 +1,0 @@
-CREATE TABLE user_account (
-  id BIGSERIAL PRIMARY KEY
-
-);

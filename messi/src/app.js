@@ -2,6 +2,7 @@
 require('dotenv').config();
 const db = require('./app/db');
 const express = require('express');
+var bodyParser = require('body-parser')
 
 // Constants
 const PORT = 3000;
@@ -13,6 +14,9 @@ db.migrate()
 
 // App
 const app = express();
+var cors = require('cors')
+app.use(bodyParser.json())
+
 app.get('/', (req, res) => {
   console.log(process.env.DB_HOST)
   // res.status(200)
