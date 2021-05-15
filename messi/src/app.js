@@ -16,6 +16,7 @@ db.migrate()
 const app = express();
 var cors = require('cors')
 app.use(bodyParser.json())
+app.use(cors())
 
 app.get('/', (req, res) => {
   console.log(process.env.DB_HOST)
